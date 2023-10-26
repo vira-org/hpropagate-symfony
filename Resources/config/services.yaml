@@ -1,0 +1,13 @@
+services:
+  Vira\Hpropagate\EventListener\RequestListener:
+    tags:
+      - { name: kernel.event_listener, priority: 256 }
+
+  Vira\Hpropagate\Logger\RequestProcessor:
+    tags:
+      - { name: monolog.processor }
+
+  Vira\Hpropagate\Decorator\HttpClient:
+    decorates: Symfony\Contracts\HttpClient\HttpClientInterface
+    # pass the old service as an argument
+    arguments: [ '@.inner' ]
