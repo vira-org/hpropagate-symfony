@@ -16,7 +16,7 @@ Apart from x-request-id, only headers received on the incoming request will be p
 
 ## Installation
 
-`composer require...`
+`composer require vira/hpropagate`
 
 Then add the following to your bundles file:
 

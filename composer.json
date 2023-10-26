@@ -2,6 +2,7 @@
   "name": "vira/hpropagate",
   "type": "symfony-bundle",
   "description": "Symfony bundle for propagating http headers from incoming requests to the corresponding outgoing requests automatically",
+  "license": ["MIT"],
   "require": {
     "php": ">=8.1",
     "ext-json": "*",
