@@ -18,6 +18,12 @@ Apart from x-request-id, only headers received on the incoming request will be p
 
 `composer require...`
 
+Then add the following to your bundles file:
+
+```php
+Vira\Hpropagate\ViraHpropagateBundle::class => ['all' => true
+```
+
 ## Configuration
 
 There is some optional configuration to be able to propagate more headers than just `x-request-id`:

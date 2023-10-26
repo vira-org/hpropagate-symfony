@@ -4,10 +4,14 @@ services:
       - { name: kernel.event_listener, priority: 256 }
 
   Vira\Hpropagate\Logger\RequestProcessor:
+    arguments:
+      - '@request_stack'
     tags:
       - { name: monolog.processor }
 
   Vira\Hpropagate\Decorator\HttpClient:
     decorates: Symfony\Contracts\HttpClient\HttpClientInterface
-    # pass the old service as an argument
-    arguments: [ '@.inner' ]
+    arguments:
+      - '@.inner'
+      - '@request_stack'
+      - '$headersToPropogate'

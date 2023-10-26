@@ -18,8 +18,10 @@ class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->getRootNode();
         $rootNode
             ->children()
-            ->arrayNode('headers_to_propagate')
-            ->info('List of headers to propagate in addition to x-request-id')
+                ->arrayNode('headers_to_propagate')
+                    ->info('List of headers to propagate in addition to x-request-id')
+                    ->scalarPrototype()->end()
+                ->end()
             ->end();
 
         return $treeBuilder;

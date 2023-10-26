@@ -18,6 +18,10 @@ class RequestProcessor implements ProcessorInterface
     {
         $request = $this->requestStack->getMainRequest();
 
+        if (!$request) {
+            return $record;
+        }
+
         $record->extra['req']['id'] = $request->headers->get('x-request-id');
 
         return $record;

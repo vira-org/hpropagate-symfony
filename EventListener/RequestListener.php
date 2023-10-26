@@ -9,7 +9,13 @@ class RequestListener
 {
     public function __invoke(RequestEvent $event): void
     {
-        $requestId = $event->getRequest()->headers->get('x-request-id');
+        $request = $event->getRequest();
+
+        if (!$request) {
+            return;
+        }
+
+        $requestId = $request->headers->get('x-request-id');
 
         if (!$requestId) {
             $requestId = Uuid::v4();
