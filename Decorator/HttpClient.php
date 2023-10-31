@@ -20,15 +20,15 @@ class HttpClient implements HttpClientInterface
 
     public function request(string $method, string $url, array $options = []): ResponseInterface
     {
-        $request = $this->requestStack->getMainRequest();
+        if ($request = $this->requestStack->getMainRequest()) {
+            $headersToPropagate = [
+                'x-request-id',
+                ...$this->headersToPropagate,
+            ];
 
-        $headersToPropagate = [
-            'x-request-id',
-            ...$this->headersToPropagate,
-        ];
-
-        foreach ($headersToPropagate as $header) {
-            $options['headers'][$header] = $request->headers->get($header);
+            foreach ($headersToPropagate as $header) {
+                $options['headers'][$header] = $request->headers->get($header);
+            }
         }
 
         return new AsyncResponse($this->client, $method, $url, $options);
